@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+
+  rhsso:
+    image: localhost/rhsso-container:7.6.0
+    restart: unless-stopped
+    container_name: rhsso-container
+    environment:
+      CROSS_SITE: 'false'
+      SSO_ADMIN_USERNAME: 'admin'
+      SSO_ADMIN_PASSWORD: 'admin'
+      MIN_POOLSIZE: '5'
+      MAX_POOLSIZE: '20'
+    ports:
+      - '8080:8080'
+      - '8443:8443'
+      - '8778:8778'
+      - '8888:8888'
+    expose:
+      - '8080'
+      - '8443'
+      - '8778'
+      - '8888'
+    networks:
+      - rhsso
+      
+
+networks:
+  rhsso:
+
